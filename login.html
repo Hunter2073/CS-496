@@ -1,0 +1,24 @@
+<html>
+<link rel="stylesheet" href="css/mycss.css">
+	
+<!--so need to make a call to the database, or file system to find out how many projects there are to generate...
+how many bullet points are needed-->
+	<body class="row"> 
+		<div id=leftcol class="col">
+			<form action="form.php" method="post">
+				User Id<br>
+				<input type="text" name="useID"><br>
+				Password<br>
+				<input type="password" name="passwrd"><br>
+			</form>
+		</div>
+		<div id=rightcol class="col">
+			<form action="newUser.php" method="post">
+				Create a User ID<br>
+				<input type="text" name="useID"><br>
+				Create a Password<br>
+				<input type="text" name="psswrd"><br>
+			</form>
+		</div>
+	</body>
+</html>
