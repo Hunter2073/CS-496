@@ -1,0 +1,86 @@
+html{
+	background-image: url(../images/grayBackground.jpg);
+	background-repeat: repeat;
+	margin: 0.5%;
+}
+
+body{
+	overflow-x: hidden;
+	font-family: Arial;
+	margin: auto;
+}
+
+#mid{
+	margin-left:20%; 
+}	
+#start{
+	font-size: 30px;
+	margin-left: 35%;
+}
+
+#join{
+	height: 3%;
+	width:4%;
+	font-size:12px;
+}
+button{
+	height:55%;
+	width:60%;
+}
+.first{
+	height:200px;
+	width: 400px;
+	font-size: 30px;
+}
+
+#leftcol{
+	/*
+	height:125px;
+	margin-right: 40%;
+	float: left;
+	width:40%;
+	*/
+}
+#rightcol{
+	/*
+	margin-left:40%;
+	float:left;
+	width:40%;
+	*/
+}
+.col{
+	float:left;
+	width: 50%;
+	height:250px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+
+
+#w3c{
+	clear: left;
+	margin: auto;
+}
+
+h1{
+	margin: auto;
+	text-align: left;
+	overflow: auto;
+}
+#bookLogo{
+	float: left;
+	width: 12%;
+	height: auto;
+
+}
+.textInfo{
+	display:inline-block; 
+	width:150px; 
+	text-align: left;
+}
