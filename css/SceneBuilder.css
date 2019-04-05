@@ -25,6 +25,11 @@
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
+.dpDown{
+	width:100%;
+	height:20%;
+}
+
 html{
 	background-image: url(../images/grayBackground.jpg);
 	background-repeat: repeat;
@@ -37,6 +42,9 @@ body{
 	margin: auto;
 }
 .main{
+	/*
+	background-image:url(../images/alt.jpg);
+	*/
 	background-image: url(../images/sample.jpg);
 	background-repeat: no-repeat;
 	background-size: contain;
