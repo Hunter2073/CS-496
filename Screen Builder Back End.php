@@ -5,6 +5,78 @@
 
 
 
+$servername = "people.wku.edu";
+$username = "kth81383";
+$password = "nk4k9n8wR_yQTjjU";
+$db_name = "gameenginedb";
+
+//$SQL = "SELECT * FROM book";
+/*
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //$stmt = $conn->prepare($SQL); 
+    //$stmt->execute();
+
+    // set the resulting array to associative
+    $result = $stmt->fetchAll(); 
+	
+	//if you want to know how many results came back
+	$total = count($result);
+	
+	//Show the result on the webpage as a table (you can change it the way it is required)
+	echo "<table style='border: solid 1px black;width:100%;'>";
+	echo "<tr style='border: solid 1px black;'><th>ISBN</th><th>ISSN</th><th>Title</th>
+		<th>Edition</th><th>Author</th><th>Publisher</th>
+		<th>Price</th><th>Stock</th></tr>";
+	
+	foreach($result as $row){
+		echo "<tr style='border: solid 1px black;'><th>$row[0]</th><th>$row[1]</th><th>$row[2]</th><th>$row[3]</th>
+			<th>$row[4]</th><th>$row[5]</th><th>$row[6]</th><th>$row[7]</th></tr>";
+	}
+
+}
+catch(PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+echo "</table>";
+$conn = null;
+
+?>
+below is a sample JSON object of a scene.
+var scene = {id:"temp", image:"sample.jpg", option1:"This is option one",option2:"This is option 2",
+option3:"This is option 3", option4: "this is option 4"};//JSON object
+var scene =JSON.stringify(scene);
+*/
+
+//$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+//$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//$stmt = $conn->prepare($SQL); 
+//$stmt->execute();
+	
+	
+header("Content-Type: application/json; charset=UTF-8");
+$obj = json_decode($_POST["x"], false);
+
+$conn = new mysqli("$servername", "$username", "$password", "$db_name");
+$stmt = $conn->prepare("SELECT * FROM scene");
+$stmt->bind_param("ss", $obj->SceneID, $obj->projectID, $obj->imgDir);
+$stmt->execute();
+$result = $stmt->get_result();
+$outp = $result->fetch_all(MYSQLI_ASSOC);
+echo json_encode($outp);
+
+
+
+
+
+
+
+
+
+
+
 //**************************EVERYTHING BELOW IS SCREEN BUILDER FUNCTIONS*******************************
 
 

@@ -19,6 +19,7 @@ how many bullet points are needed-->
 			</div>
 		</div>
 		<div class="main" id="option">
+		<p id="demo"></p>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 			<form class="option">
 				<input type="text" name="option one" placeholder="First Response" required ><br>

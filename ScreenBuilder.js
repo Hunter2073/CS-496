@@ -2,7 +2,20 @@ window.onload = function(){
 	if (document.getElementById("option") != null){
 		//createScene();
 		
-		
+
+
+		//obj = { "table":"customers", "limit":10 };
+		//dbParam = JSON.stringify(obj);
+		var scene = {SceneID:"temp",projectID:"test" imgDir:"sample.jpg"};//JSON object
+		var scene =JSON.stringify(scene);
+		xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("demo").innerHTML = this.responseText;
+			}
+		};
+		xmlhttp.open("POST", "Screen Builder Back End.php?x=" + dbParam, true);
+		xmlhttp.send();
 	}//end of if
 	if (document.getElementById("dpDIV") !=null){
 		if (document.getElementsByClassName("dpDown") >0){
@@ -48,5 +61,13 @@ function changeBI(){
 function textOption(){
 	//textOption code here
 }//end of textOption
+
+
+
+
+
+
+
+//JSON stuff
 
 
