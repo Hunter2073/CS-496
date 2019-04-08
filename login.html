@@ -5,21 +5,21 @@
 how many bullet points are needed-->
 	<body class="row"> 
 		<div id=leftcol class="col">
-			<form action="form.php" method="post">
-                <h4>User Id</h4>
-				<input type="text" name="useID"><br>
-				<h4>Password</h4>
-				<input type="password" name="passwrd"><br>
-                <button id="login">Login</button>
+			<form action="login.php" method="post">
+				Username<br>
+				<input type="text" name="username"><br>
+				Password<br>
+				<input type="password" name="password"><br>
+				<button class="login">Login</button>
 			</form>
 		</div>
 		<div id=rightcol class="col">
-			<form action="newUser.php" method="post">
-				<h4>Create User ID</h4>
-				<input type="text" name="useID"><br>
-                <h4>Create a Password</h4>
-				<input type="text" name="psswrd"><br>
-                <button id="login">Create Account</button>
+			<form action="newAccount.php" method="post">
+				Create a User ID<br>
+				<input type="text" name="username"><br>
+				Create a Password<br>
+				<input type="password" name="password"><br>
+				<button class="login">Create new account</button>
 			</form>
 		</div>
 	</body>

@@ -11,10 +11,12 @@ body{
 }
 
 #mid{
-	margin-left:20%; 
+    text-align: center;
 }	
 #start{
 	font-size: 30px;
+    margin-bottom: 30px;
+
 }
 
 #join{
@@ -22,17 +24,22 @@ body{
 	width:45px;
 	font-size:12px;
 }
+
 button{
-	height: 40px;
-	width: 200px;
-    font-size: 20px;
-    align-content: center;
-    cursor: pointer;
+	height:55%;
+	width:60%;
     border-radius: 10px;
 }
 .first{
+	height:100px;
+	width: 200px;
+	font-size: 25px;
 }
-
+.login{
+    width: 125px;
+    height: 50px;
+    font-size: 15px;
+}
 
 .col{
 	float:left;
@@ -54,11 +61,10 @@ button{
 }
 
 h1{
+	margin: auto;
 	text-align: center;
-}
+	overflow: auto;
 
-h4{
-    margin: 0px;
 }
 
 
