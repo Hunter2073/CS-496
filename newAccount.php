@@ -3,12 +3,12 @@
 $servername = "people.wku.edu";
 $username = "kth81383";
 $password = "nk4k9n8wR_yQTjjU";
-$db_name = "gameenginedb"; 
+$db_name = "gameenginedb";
 
-/* $servername = "localhost";
+/*$servername = "localhost";
 $username = "root";
 $password = "";
-$db_name = "gameenginedb"; */
+$db_name = "gameenginedb";*/
 
 //create conn
 $conn = new mysqli($servername, $username, $password);
@@ -26,14 +26,13 @@ $getLastID = "SELECT MAX(uID) FROM user";
 $query = mysqli_query($conn, $getLastID);
 $getQuery = mysqli_fetch_assoc($query);
 
-$nextID = $getQuery['uID'] + 1;
 
 $uName = $_POST['username'];
 $pWord = $_POST['password']; //need to make sure the field names here are correct before testing
 
 $hash = password_hash($pWord, PASSWORD_DEFAULT);
 
-$addUser = "INSERT INTO user(uName, pWord, uID) VALUES ('$uName', '$hash', '$nextID')";
+$addUser = "INSERT INTO user(uName, pWord) VALUES ('$uName', '$hash')";
 
 $query = mysqli_query($conn, $addUser);
 
