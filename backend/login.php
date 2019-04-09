@@ -4,26 +4,11 @@
 //as such, many comments are found throughout telling what is old / what needs to be changed
 
 session_start();
-$servername = "people.wku.edu";
-$username = "kth81383";
-$password = "nk4k9n8wR_yQTjjU";
-$db_name = "gameenginedb"; 
+include_once 'objects/database.php';
 
-/*$servername = "localhost";
-$username = "root";
-$password = "";
-$db_name = "gameenginedb"; */
-
-
-
-//create conn
-$conn = new mysqli($servername, $username, $password);
-
-//check conn
-if($conn->connect_error){
-    die("Connection failed: " . $conn->connect_error);
-}
-mysqli_select_db($conn, $db_name);
+$database = new Database(0); //LocalHost DB
+//$database = new Database(1); //Prod DB
+$conn = $database->getConnection();
 
 echo "Successful connection!";
 
@@ -34,8 +19,9 @@ $pWord = $_POST['password']; //need to make sure the field names here are correc
 
 
 //old query
-$findUser = "SELECT uName, pWord FROM user WHERE uName = '$uName'"; 
+$findUser = "SELECT uName, pWord FROM user WHERE uName = '$uName'";
 
+// Need error handling if this fails
 $query = mysqli_query($conn, $findUser);
 $rows = mysqli_num_rows($query);
 
@@ -43,8 +29,8 @@ echo $rows;
 
 $getQuery = mysqli_fetch_assoc($query);
 
-$dbPW = $getQuery['pWord'];	
-$hash = password_hash($pWord, PASSWORD_DEFAULT);	
+$dbPW = $getQuery['pWord'];
+$hash = password_hash($pWord, PASSWORD_DEFAULT);
 //echo $hash . "\n";
 //echo $dbPW;
 
