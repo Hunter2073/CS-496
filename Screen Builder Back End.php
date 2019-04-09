@@ -5,10 +5,37 @@
 
 
 
-$servername = "people.wku.edu";
+/* $servername = "people.wku.edu";
 $username = "kth81383";
 $password = "nk4k9n8wR_yQTjjU";
-$db_name = "gameenginedb";
+$db_name = "gameenginedb"; */
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$db_name = "local 496 sample";
+
+$conn = new mysqli("$servername", "$username", "$password", "$db_name");
+if(! $conn ) {
+	echo "Connection Failed";
+}
+
+header("Content-Type: application/json; charset=UTF-8");
+$obj =(json_decode($_POST["x"], false));
+echo $_POST["x"];
+$objNew = str_replace("{", "",$obj);
+$objNew = str_replace("}", "",$objNew);
+$inputArray = explode(":",$objNew);
+$target = $inputArray[1];
+//$obj.split
+$stmt = $conn->prepare("SELECT * FROM .$target");
+//$stmt->bind_param("s", $target);
+$stmt->execute();
+$result = $stmt->get_result();
+$outp = $result->fetch_all(MYSQLI_ASSOC);
+echo json_encode($outp);
+
+
 
 //$SQL = "SELECT * FROM book";
 /*
@@ -56,47 +83,27 @@ var scene =JSON.stringify(scene);
 //$stmt->execute();
 	
 	
-header("Content-Type: application/json; charset=UTF-8");
-$obj = json_decode($_POST["x"], false);
-
-$conn = new mysqli("$servername", "$username", "$password", "$db_name");
-$stmt = $conn->prepare("SELECT * FROM scene");
-$stmt->bind_param("ss", $obj->SceneID, $obj->projectID, $obj->imgDir);
-$stmt->execute();
-$result = $stmt->get_result();
-$outp = $result->fetch_all(MYSQLI_ASSOC);
-echo json_encode($outp);
-
-
-
-
-
-
-
-
-
-
 
 //**************************EVERYTHING BELOW IS SCREEN BUILDER FUNCTIONS*******************************
 
 
 //passOff takes info from ScreenBuilder.js and passes it to the database to be stored
 //thinking it needs to return a T/F result if successful or failed
-function passOff(){
+//function passOff(){
 	
-}//end of passOff
+//}//end of passOff
 
 //deleteScene finds a specific scene and its options and deletes it
 //return T/F if successful of failed
-function deleteScene(){
+//function deleteScene(){
 	
-}//end of deleteScene	
+//}//end of deleteScene	
 	
 //BGI takes a Image and overrides a scene's stored bacgkround image on the database
-function BGI(){
+//function BGI(){
 	/*update image
 	from scene
 	where sceneID = input
 	*/
-}//end of BGI
+//}//end of BGI
 ?>

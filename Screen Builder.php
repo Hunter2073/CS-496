@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="css/SceneBuilder.css">
 <script src="ScreenBuilder.js"></script>
 <?php
-	include 'Screen Builder Back End.php';
+	//include 'Screen Builder Back End.php';
 ?>
 	
 <!--so need to make a call to the database, or file system to find out how many projects there are to generate...
@@ -11,14 +11,15 @@ how many bullet points are needed-->
 		<div class="dropdown" id="dpDIV">
 			<button class="dropbtn">Scenes</button>
 			<div class="dropdown-content">
-				<button class="dpDown" name="Save Scene">Save Scene</button><br>
-				<button class="dpDown" name="Create New Scene">Create New Scene</button><br>
-				<button class="dpDown" name="Delete Scene">Delete Scene</button><br>
-				<button class="dpDown" name="Change Background">Change Background Image</button><br>
-				<button class="dpDown" name="Text Options">Text Options</button>
+				<button class="dpDown" id="Save Scene">Save Scene</button><br>
+				<button class="dpDown" id="Create New Scene">Create New Scene</button><br>
+				<button class="dpDown" id="Delete Scene">Delete Scene</button><br>
+				<button class="dpDown" id="Change Background">Change Background Image</button><br>
+				<button class="dpDown" id="Text Options">Text Options</button>
 			</div>
 		</div>
 		<div class="main" id="option">
+		<button id="target">This is target</button>
 		<p id="demo"></p>
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 			<form class="option">

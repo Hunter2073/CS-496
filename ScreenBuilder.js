@@ -1,34 +1,123 @@
+var isSaved=true;
 window.onload = function(){
 	if (document.getElementById("option") != null){
-		//createScene();
 		
-
-
-		//obj = { "table":"customers", "limit":10 };
-		//dbParam = JSON.stringify(obj);
-		var scene = {SceneID:"temp",projectID:"test" imgDir:"sample.jpg"};//JSON object
-		var scene =JSON.stringify(scene);
-		xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("demo").innerHTML = this.responseText;
-			}
-		};
-		xmlhttp.open("POST", "Screen Builder Back End.php?x=" + dbParam, true);
-		xmlhttp.send();
 	}//end of if
-	if (document.getElementById("dpDIV") !=null){
-		if (document.getElementsByClassName("dpDown") >0){
-			var dropOptions = document.getElementsByClassName("dpDown");
-			
-		}//end of if statement
-	}//end of dpDIV if statement
+	if (document.getElementById("Save Scene") !=null){
+		document.getElementById("Save Scene").addEventListener("click",function(){
+			//save scene sends current information to database
+			save();
+			isSaved=true;
+		});
+	}//end of Save Scene if statement
+	if (document.getElementById("Create New Scene") !=null){
+		document.getElementById("Create New Scene").addEventListener("click",function(){
+			//Create new sends current information to database
+			//Also needs to clear all current fields
+			if (isSaved)[
+				save();
+				clearCurrentState();
+				isSaved=false;
+			}
+			else{
+				firstSave();
+				clearCurrentState();
+			}
+		});
+	}//end of Create New Scene if statement
+	if (document.getElementById("Delete Scene") !=null){
+		document.getElementById("Delete Scene").addEventListener("click",function(){
+			//Delete Scene prompts the user to make sure they want to delete everything
+			//removes the info from the database
+			//Also needs to clear all current fields
+			if (confirm('Are you sure you want to delete the scene?')) {
+				isSaved=false;
+				clearCurrentState();
+			}//end of confirm if
+		});
+	}//end of delete scene if statement
+	if (document.getElementById("Change Background Image") !=null){
+		document.getElementById("Change Background Image").addEventListener("click",function(){
+			//Prompt use to upload a new picture
+			//updates the info from the database
+			//change the css of the current scene
+		});
+	}//end of Change Background image if statement
 	
 }
+
+//function passes information off to the database to be saved (update)
+function save(){
+	var option1 = document.getElementsByName("option one").value;
+	var option2 = document.getElementsByName("option two").value;
+	var option3 = document.getElementsByName("option three").value;
+	var option4 = document.getElementsByName("option four").value;
+	var path = document.getElementById("main").style.backgroundImage;
+					
+	var obj = "{"+option1.toString()+":"+option2.toString()+":"+
+	option3.toString()+ ":"+option4.toString()+ ":"+path.toString()+"}";
+	var obj =JSON.stringify(obj);
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("demo").innerHTML = this.responseText;
+		}
+	};
+	xmlhttp.open("POST", "Screen Builder Back End.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("x=" +obj);
+}
+
+//first save is exactly the same as save, but instead of updating infor in the database
+//this function inserts new data to the database
+function firstSave(){
+	var option1 = document.getElementsByName("option one").value;
+	var option2 = document.getElementsByName("option two").value;
+	var option3 = document.getElementsByName("option three").value;
+	var option4 = document.getElementsByName("option four").value;
+	var path = document.getElementById("main").style.backgroundImage;
+					
+	var obj = "{"+option1.toString()+":"+option2.toString()+":"+
+	option3.toString()+ ":"+option4.toString()+ ":"+path.toString()+"}";
+	var obj =JSON.stringify(obj);
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("demo").innerHTML = this.responseText;
+		}
+	};
+	xmlhttp.open("POST", "Screen Builder Back End.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("x=" +obj);
+}
+
+//clearCurrentState sets all form values to blanks
+function clearCurrentState(){
+	var option1 = document.getElementsByName("option one").value ="";
+	var option2 = document.getElementsByName("option two").value ="";
+	var option3 = document.getElementsByName("option three").value ="";
+	var option4 = document.getElementsByName("option four").value ="";
+	var path = document.getElementById("main").style.backgroundImage ="";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //createScene needs to call saveScene, and reset the current page (delete BI and clear options)
 function createScene(){
+	
+	
 	var divMain = document.getElementById("option");
 	var para = document.createElement("p");
 	var node = document.createTextNode("Hello World");
@@ -40,16 +129,7 @@ function createScene(){
 	
 	//alert("Test alert box");
 }//end of createScene
-//saveScene needs to grab backgroundImage and all text options and pass them to the database...
-//without changing the current page
-function saveScene(){
-	//saveScene code here
-}//end of saveScene
 
-//deleteScene code should clean the current page of all BI and text options, maybe alert?
-function deleteScene(){
-	//deleteScene code here
-}//end of deleteScene
 
 //cahngeBI should have a message box pop up an dprompt user to upload a new image..
 //then take that image and set it to (id=option div background)
@@ -62,12 +142,25 @@ function textOption(){
 	//textOption code here
 }//end of textOption
 
-
-
-
-
-
-
-//JSON stuff
+/*
+*******OLD CODE BELOW******
+//createScene();
+		document.getElementById("target").addEventListener("click",function (){
+			//alert(string.toString());
+			
+			/* var obj = '{table:user}';//JSON object
+			var obj =JSON.stringify(obj);
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					document.getElementById("demo").innerHTML = this.responseText;
+				}
+			};
+			xmlhttp.open("POST", "Screen Builder Back End.php", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("x=" +obj); 
+			});//end of event listener	
+			
+*/
 
 
