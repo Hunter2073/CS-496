@@ -45,14 +45,10 @@ else { //Valid information from caller
 				echo "Failed";
 			}
 
-			// Old Stuff, not sure if needed anymore
-			//$getQuery = mysqli_fetch_assoc($query);
-			//$permissionLevel = $getQuery['permission'];
-			//$_SESSION['permission'] = $permissionLevel; //probably wont need this
-			//$_SESSION['loggedin'] = true;
-			//$_SESSION['username'] = $getQuery['uName'];
+if($rows == 1){
+//	$getQuery = mysqli_fetch_assoc($query);
+	//$permissionLevel = $getQuery['permission'];
 
-			//header('Location: main.php'); //old
 		}
 		else{
 			// Failure message is sent back here w/ appropriate info
