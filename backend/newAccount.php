@@ -5,7 +5,7 @@ $database = new Database(0); //LocalHost DB
 //$database = new Database(1); //Prod DB
 $conn = $database->getConnection();
 
-echo "Successful connection!";
+echo "Successful connection!"; //replace with api stuff
 
 $uName = $_POST['username'];
 $pWord = $_POST['password']; //need to make sure the field names here are correct before testing

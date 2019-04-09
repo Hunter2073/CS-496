@@ -37,26 +37,15 @@ $hash = password_hash($pWord, PASSWORD_DEFAULT);
 if (password_verify($pWord, $dbPW)){
 	$_SESSION['loggedin'] = true;
 	$_SESSION['username'] = $getQuery['uName'];
-	echo "success";
+	echo "success"; //replace with api stuff
+	header('Location: ../frontend/creatorProjSelect.html');
 } else{
-	echo "Failed";
+	echo "Failed"; //replace with api stuff
+	header('Location: ../frontend/login.html'); 
 }
 
+//	header('Location: main.php');
 
-
-if($rows == 1){
-//	$getQuery = mysqli_fetch_assoc($query);
-	//$permissionLevel = $getQuery['permission'];
-
-	//$_SESSION['permission'] = $permissionLevel; //probably wont need this
-	$_SESSION['loggedin'] = true;
-	$_SESSION['username'] = $getQuery['uName'];
-
-//	header('Location: main.php'); //old
-}
-else{
-//	header('Location: login.php'); //old
-}
 
 
 
