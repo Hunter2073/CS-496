@@ -44,7 +44,7 @@ if (password_verify($pWord, $dbPW)){
 	header('Location: ../frontend/login.html'); 
 }
 
-//	header('Location: main.php');
+
 
 
 
