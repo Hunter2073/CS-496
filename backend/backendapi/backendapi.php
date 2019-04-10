@@ -60,11 +60,11 @@ class BackendAPI{
         // User does not already exist. Therefore can be created.
         $insert = $this->databaseapi->createUser($uName, $pWord);
 
-        if ($insert){
+        if (is_bool($insert)){
           return true;
         }
         else {
-          return new ErrorThrow("Error: mysqli_query error");
+          return $insert;
         }
       }
     }

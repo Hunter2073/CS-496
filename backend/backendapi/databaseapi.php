@@ -83,10 +83,56 @@ class DatabaseAPI{
     $query = mysqli_query($this->conn, $addUser);
 
     if (!$query){
-      return false;
+      return new ErrorThrow("Error: mysqli_query error");
     }
     else{
       return true;
+    }
+  }
+
+  public function createProject($projectName, $ownerID){
+    $addProject = "INSERT INTO project(projectName, ownerID) VALUES ('$projectName', '$ownerID')";
+
+    $query = mysqli_query($this->conn, $addProject);
+
+    if (!$query){
+      return new ErrorThrow("Error: mysqli_query error");
+    }
+    else{
+      return true;
+    }
+  }
+
+  public function removeProject($projectID){
+    if ($this->checkUsername($uName)){
+      $deleteProject = "DELETE FROM project WHERE projectID = " . $projectID;
+      $query = mysqli_query($this->conn, $deleteProject);
+
+      if (!$query){ // If something went wrong with the query, return appropriate error
+        // Error return: Unable to query DB
+        $error = new ErrorThrow("Error: mysqli_query error");
+        return $error;
+      }
+      else{
+        return true;
+      }
+    }
+    else {
+      return false;
+    }
+  }
+
+  public function getAllPublishedProjects(){
+    $findUser = "SELECT * FROM project WHERE isPublished = 1";
+    $query = mysqli_query($this->conn, $findUser);
+
+    if (!$query){ // If something went wrong with the query, return appropriate error
+      // Error return: Unable to query DB
+      $error = new ErrorThrow("Error: mysqli_query error");
+      return $error;
+    }
+    else{
+        return $query;
     }
   }
 }

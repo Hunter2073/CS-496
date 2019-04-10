@@ -12,8 +12,23 @@ how many bullet points are needed-->
 	<body>
 		<div id="body" class="row">
 			<div id=leftcol class="col">
-				<button class="select">Game 1</button>
-				<button class="select">Game 2</button>
+				<?php
+				include dirname(__DIR__, 1).'/backend/backendapi/backendapi.php';
+
+				$backendapi = new BackendAPI(0);
+
+				//test data
+				$projectName = "testProject";
+				$ownerID = 6;
+
+				$backendapi->databaseapi->createProject($projectName, $ownerID);
+
+				$allProjects = $backendapi->databaseapi->getAllPublishedProjects();
+
+				while($row = mysqli_fetch_assoc($allProjects)){
+				   echo "<button class=\"select\">" . $row['projectName']."</button>";
+				}
+				 ?>
 			</div>
 			<div id=rightcol class="col">
 				<img src="../images/bookLogo.jpg" alt="Book Logo" id="thumb">
