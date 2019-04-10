@@ -1,5 +1,7 @@
 <?php
 include dirname(__DIR__, 1)."/objects/database.php";
+include dirname(__DIR__, 1).'/objects/error.php';
+
 class DatabaseAPI{
   private $conn;
 
@@ -54,6 +56,25 @@ class DatabaseAPI{
     }
   }
 
+  public function removeUser($uName){
+    if ($this->checkUsername($uName)){
+      $findUser = "DELETE FROM user WHERE uName = '$uName'";
+      $query = mysqli_query($this->conn, $findUser);
+
+      if (!$query){ // If something went wrong with the query, return appropriate error
+        // Error return: Unable to query DB
+        $error = new ErrorThrow("Error: mysqli_query error");
+        return $error;
+      }
+      else{
+        return true;
+      }
+    }
+    else {
+      return false;
+    }
+  }
+
   public function createUser($uName, $pWord){
     $hash = password_hash($pWord, PASSWORD_DEFAULT);
 
@@ -70,4 +91,4 @@ class DatabaseAPI{
   }
 }
 
-  ?>
+?>

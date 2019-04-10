@@ -1,10 +1,9 @@
 <?php
 //error_reporting(E_ERROR | E_PARSE); // Removes unwanted warnings
 include 'databaseapi.php';
-include dirname(__DIR__, 1).'/objects/error.php';
 
 class BackendAPI{
-  private $databaseapi;
+  public $databaseapi;
 
   // Constructor: new DatabaseAPI()
   // Expected Param: integer 0 or 1
