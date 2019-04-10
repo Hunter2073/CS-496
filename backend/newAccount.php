@@ -1,27 +1,52 @@
 <?php
+// Include Database Objects
 include_once 'objects/database.php';
+error_reporting(E_ERROR | E_PARSE); // removes unwanted warnings
 
-$database = new Database(0); //LocalHost DB
+// Create Database Connection
+$database = new Database(1); //LocalHost DB
 //$database = new Database(1); //Prod DB
 $conn = $database->getConnection();
-
-echo "Successful connection!"; //replace with api stuff
 
 $uName = $_POST['username'];
 $pWord = $_POST['password']; //need to make sure the field names here are correct before testing
 
-// Should we be validating the password/username provided here before placing it into the DB?
-// If so, we need to come up with requirements for them
+if ($uName == null || $pWord == null){
+	// Failure message is sent back w/ appropriate info
+}
+else { //Valid information from caller
 
-// 1. Check to see if Username already exists
-//   if true -> return alreadyExistsErr
-//   else -> following logic:
+  // Authenticate username + pword against requirements
 
-$hash = password_hash($pWord, PASSWORD_DEFAULT);
+	// Query to retrieve user information
+	$findUser = "SELECT uName, pWord FROM user WHERE uName = '$uName'";
 
-$addUser = "INSERT INTO user(uName, pWord) VALUES ('$uName', '$hash')";
+	// Make the query to the DB
+	$query = mysqli_query($conn, $findUser);
 
-$query = mysqli_query($conn, $addUser);
+	if (!$query){ // If something went wrong with the query, return appropriate error
+		printf("Errormessage: %s\n", mysqli_error($conn));
+	}
+	else {
+		$rows = mysqli_num_rows($query); // Find number of rows retrieved
+
+		// If the user exists, only ONE row should be returned, else user does not exist.
+		if($rows == 1){
+	    // User already exists
+	    // Failure message is sent back w/ appropriate info
+	    echo "Failure: User Already Exists";
+		}
+		else{
+	    // User does not already exist. Therefore can be created.
+	    $hash = password_hash($pWord, PASSWORD_DEFAULT);
+
+	    $addUser = "INSERT INTO user(uName, pWord) VALUES ('$uName', '$hash')";
+
+	    $query = mysqli_query($conn, $addUser);
+		}
+	}
+}
+
 
 
 ?>
