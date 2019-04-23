@@ -1,0 +1,30 @@
+h1{text-align: center;}
+
+button{border-radius: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    }
+
+button:hover{background-color: darkgray;
+}
+
+.first{height: 60px;
+    width: 125px;
+    align-content: center;
+    }
+
+#mid{text-align: center;}
+
+body{background-color: azure;}
+
+.col{float:left;
+    width: 50%;}
+
+input[type=text]{height: 30px; 
+    width: 200px;
+    font-size: 16px;}
+
+input[type=checkbox]{align-content: center;
+}
+
+input[type=checkbox]:hover{cursor: pointer;}
