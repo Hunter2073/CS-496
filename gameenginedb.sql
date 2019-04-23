@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 03, 2019 at 02:49 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: localhost
+-- Generation Time: Apr 23, 2019 at 05:58 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -82,7 +82,7 @@ CREATE TABLE `scene` (
 
 CREATE TABLE `user` (
   `uName` varchar(16) NOT NULL,
-  `pWord` varchar(32) NOT NULL,
+  `pWord` varchar(256) NOT NULL,
   `uID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
