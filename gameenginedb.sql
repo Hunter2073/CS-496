@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 23, 2019 at 05:58 PM
+-- Generation Time: Apr 24, 2019 at 04:27 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -47,6 +47,15 @@ CREATE TABLE `project` (
   `ownerID` int(11) NOT NULL,
   `isPublished` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`projectID`, `projectName`, `ownerID`, `isPublished`) VALUES
+(1, 'Prog1', 0, 1),
+(2, 'Prog2', 0, 1),
+(3, 'Prog3', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -120,6 +129,40 @@ ALTER TABLE `scene`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`uID`),
   ADD UNIQUE KEY `USERNAME` (`uName`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `options`
+--
+ALTER TABLE `options`
+  MODIFY `optionID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `projectID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `saves`
+--
+ALTER TABLE `saves`
+  MODIFY `saveID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `scene`
+--
+ALTER TABLE `scene`
+  MODIFY `sceneID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `uID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
