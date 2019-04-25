@@ -33,8 +33,6 @@ button{
     cursor: pointer;
 }
 
-button:hover{background-color: gainsboro;}
-
 .first{
 	height:100px;
 	width: 200px;
@@ -98,4 +96,12 @@ h1{
 
 input[type="checkbox"]{
     vertical-align: middle;
+}
+
+input[type="checkbox"]:hover{
+    cursor: pointer;
+}
+
+input[type="text"]:hover, input[type="password"]:hover, button:hover{
+    background-color: gainsboro;
 }
