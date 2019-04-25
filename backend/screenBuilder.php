@@ -5,17 +5,17 @@
 		<div class="dropdown" id="dpDIV">
 			<button class="dropbtn">Scenes</button>
 			<div class="dropdown-content">
-				<button class="dpDown" id="Save Scene" onclick="saveButton()">Save Scene</button><br>
-				<button class="dpDown" id="Create New Scene" onclick="createButton()">Create New Scene</button><br>
-				<button class="dpDown" id="Delete Scene" onclick="deleteButton()">Delete Scene</button><br>
-				<form action="picUpload.php" method="post" enctype="multipart/form-data">
+				<button class="dpDown" id="Save Scene" onclick="saveButton()">Save Scene</button>
+                <button class="dpDown" id="Create New Scene" onclick="createButton()">Create New Scene</button>
+                <button class="dpDown" id="Delete Scene" onclick="deleteButton()">Delete Scene</button>
+                <button class="dpDown" id="Change Background" onclick="changeBIButton()">Update Background Image</button>
+                <button class="dpDown" id="Change Scene" onclick="changeScene()">Change Scene</button>
+                <button class="dpDown" id="Link Scene" onclick="sceneSelectNoGo()">Link Scene</button>
+                <form action="picUpload.php" method="post" enctype="multipart/form-data">
 					Please select an image to upload
 					<input type="file" name="fileToUpload"id="fileToUpload"><br>
 					<input type="submit" value="Upload Image" name="submit"><br>
 				</form>
-				<button class="dpDown" id="Change Background" onclick="changeBIButton()">Update Background Image</button><br>
-				<button class="dpDown" id="Change Scene" onclick="changeScene()">Change Scene</button>
-				<button class="dpDown" id="Link Scene" onclick="sceneSelectNoGo()">Link Scene</button>
 			</div>
 		</div>
 		<div class="main" id="option">

@@ -1,0 +1,17 @@
+h1{text-align: center;}
+
+button{cursor: pointer;
+    float: left;
+    width: 14%
+    display: inline-block;}
+
+form{display: inline-block;}
+
+.dropdown-content{width: 100%;
+    display: table;}
+
+button:hover{background-color: darkgray;}
+
+body{background-color: azure;}
+
+textarea{font-size: 18px;}
