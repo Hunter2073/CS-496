@@ -1,16 +1,13 @@
 <html>
 <link rel="stylesheet" href="../css/mycss.css">
-<h1>Select a game</h1>
+<h1>Select a game to work on:</h1>
 
-<div class="join">
-	<input type="text" name="hostID" placeholder="hostID"><button name="join" id="join">Join?</button><br>
-	<input type="checkbox">Host?<br><br>
-</div>
+
 
 <body>
 	<div id="body" class="row">
 		<div id=leftcol class="col">
-			<form action="playgame.php" method="post">
+			<form action="scenebuilder.php" method="post">
 				<?php
 				include dirname(__DIR__, 1).'/backend/backendapi/backendapi.php';
 
