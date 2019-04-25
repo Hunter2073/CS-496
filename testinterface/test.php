@@ -68,6 +68,10 @@ if (is_bool($result) && $result == true){
 
 // UT3.2
 
+
+if ($backendapi->databaseapi->checkUsername($test_uName)){
+  $backendapi->databaseapi->removeUser($test_uName);
+}
 ?>
 
 <table>
