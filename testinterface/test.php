@@ -1,77 +1,73 @@
 <?php
-include dirname(__DIR__, 1)."/backend/backendapi/backendapi.php";
-$backendapi = new BackendAPI(0);
-
-$test_uName = "JohnDoe";
-$test_pWord = "123cow";
-
-function resetTestUser(){
+  include dirname(__DIR__, 1)."/backend/backendapi/backendapi.php";
+  $backendapi = new BackendAPI(0);
+// UT1.1
+//Test plan: 1. Create Test User 2. Retrieve Test User's password 3. verify its hash
+  //Test Data
   $test_uName = "JohnDoe";
   $test_pWord = "123cow";
-  $backendapi = new BackendAPI(0);
-  $result = $backendapi->databaseapi->checkUsername($test_uName);
-  if (!$result->isError() && $result->getResult()==true){
+
+  if ($backendapi->databaseapi->checkUsername($test_uName)){
     $backendapi->databaseapi->removeUser($test_uName);
   }
 
-}
-
-// UT1.1
-//Test plan: 1. Create Test User 2. Retrieve Test User's password 3. verify its hash
-//Test Data
-resetTestUser();
-$result = $backendapi->newAccount($test_uName, $test_pWord);
-$result_ut_1_1 = "fail";
-
-if (!$result->isError()){
-  $ut_1_1_pwresult = $backendapi->databaseapi->getUserPassword($test_uName);
-  if (!$ut_1_1_pwresult->isError()){
-    if (password_verify($test_pWord, $ut_1_1_pwresult->getResult())){
-      $result_ut_1_1 = "pass";
+  $result = $backendapi->newAccount($test_uName, $test_pWord);
+  $result_ut_1_1 = "fail";
+  if (is_bool($result)){
+    $ut_1_1_pwresult = $backendapi->databaseapi->getUserPassword($test_uName);
+    if (is_string($ut_1_1_pwresult)){
+      if (password_verify($test_pWord, $ut_1_1_pwresult)){
+        $result_ut_1_1 = "pass";
+      }
     }
   }
-}
 
 // UT1.2
 //Test plan: 1. Create Test User 2. Login to Test User
-resetTestUser();
+if ($backendapi->databaseapi->checkUsername($test_uName)){
+  $backendapi->databaseapi->removeUser($test_uName);
+}
 
 $result = $backendapi->newAccount($test_uName, $test_pWord);
 $result_ut_1_2 = "fail";
-
-if (!$result->isError()){
+if (is_bool($result)){
   $ut_1_2_loginresult = $backendapi->login($test_uName, $test_pWord);
-  if (!$ut_1_2_loginresult->isError() && ($ut_1_2_loginresult->getResult())==true){
+  if (is_bool($ut_1_2_loginresult) && $ut_1_2_loginresult==true){
     $result_ut_1_2 = "pass";
   }
 }
 
 // UT1.3
 //Test plan: 1. Create Test User 2. Attempt login with invalid password
-resetTestUser();
+if ($backendapi->databaseapi->checkUsername($test_uName)){
+  $backendapi->databaseapi->removeUser($test_uName);
+}
 
 $result = $backendapi->newAccount($test_uName, "wrongpassword");
 $result_ut_1_3 = "fail";
-if (!$result->isError()){
+if (is_bool($result)){
   $ut_1_3_loginresult = $backendapi->login($test_uName, $test_pWord);
-  if ($ut_1_3_loginresult->getResult()==false){
+  if (strcmp(get_class($ut_1_3_loginresult), "ErrorThrow")==0){
     $result_ut_1_3 = "pass";
   }
 }
 
 // UT2.0
 //Test plan: 1. Remove any previous test users 2. create new test user
-resetTestUser();
+if ($backendapi->databaseapi->checkUsername($test_uName)){
+  $backendapi->databaseapi->removeUser($test_uName);
+}
+
 $result = $backendapi->newAccount($test_uName, "wrongpassword");
 $result_ut_2_0 = "fail";
-if (!$result->isError() && $result->getResult() == true){
+if (is_bool($result) && $result == true){
   $result_ut_2_0 = "pass";
 }
 
 // UT3.1
 
 // UT3.2
-resetTestUser();
+
 ?>
 
 <table>

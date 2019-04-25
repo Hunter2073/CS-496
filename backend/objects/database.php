@@ -1,7 +1,7 @@
 <?php
 class Database{
 
-  // Database Credentials for this Obj
+  // specify your own database credentials
   private $servername = "";
   private $db_name = "";
   private $username = "";
@@ -11,24 +11,13 @@ class Database{
   // get the database connection
   public function getConnection(){
 
-    $this->conn = mysqli_init( );
+    $this->conn = null;
 
-    //$this->conn = mysqli_connect($this->servername, $this->username, $this->password, $this->db_name);
-
-    $this->conn->options( MYSQLI_OPT_CONNECT_TIMEOUT, 3 );
-    $this->conn->real_connect($this->servername, $this->username, $this->password, $this->db_name);
-
-    if (mysqli_connect_errno()) {
-      printf("Connect failed: %s\n", mysqli_connect_error());
-      exit();
-    }
+    $this->conn = mysqli_connect($this->servername, $this->username, $this->password, $this->db_name);
 
     return $this->conn;
   }
 
-  // Constructor: new Database()
-  // Expected Param: integer 0 or 1
-  // 0: local host testing // 1: prod server credentials
   public function __construct($input){
     if ($input == 0){ // Localhost DB
       $this->servername = "localhost";

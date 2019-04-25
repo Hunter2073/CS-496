@@ -3,7 +3,7 @@
 <script src="ScreenBuilder.js"></script>
 	<body id="chunk"> 
 		<div class="dropdown" id="dpDIV">
-			<button class="dropbtn">Scenes</button>
+			<button class="dropbtn">Scene Options</button>
 			<div class="dropdown-content">
 				<button class="dpDown" id="Save Scene" onclick="saveButton()">Save Scene</button><br>
 				<button class="dpDown" id="Create New Scene" onclick="createButton()">Create New Scene</button><br>
