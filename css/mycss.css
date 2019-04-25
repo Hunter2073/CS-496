@@ -1,32 +1,101 @@
-h1{text-align: center;}
+html{
+	background-image: url(../images/grayBackground.jpg);
+	background-repeat: repeat;
+	margin: 0.5%;
+}
 
-button{border-radius: 10px;
-    font-size: 25px;
-    cursor: pointer;}
+body{
+	overflow-x: hidden;
+	font-family: Arial;
+	margin: auto;
+}
 
-button:hover{background-color: darkgray;}
+#mid{
+    text-align: center;
+}	
 
-.first{height: 60px;
+#start{
+	font-size: 30px;
+    margin-bottom: 30px;
+}
+
+#join{
+	height: 25px;
+	width:45px;
+	font-size:12px;
+    margin-left: 5px;
+}
+
+button{
+	height:55%;
+	width:60%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover{background-color: gainsboro;}
+
+.first{
+	height:100px;
+	width: 200px;
+	font-size: 25px;
+}
+
+.login{
     width: 125px;
-    align-content: center;}
+    height: 50px;
+    font-size: 15px;
+}
 
-#mid{text-align: center;}
+.select{
+    height: 65px;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
 
-body{background-color: azure;}
+.col{
+	float:left;
+	width: 50%;
+	height:250px;
+}
 
-.col{float:left;
-    width: 50%;}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
-input[type=text]{height: 35px; 
-    width: 200px;
-    font-size: 18px;}
+#w3c{
+	clear: left;
+	margin: auto;
+}
 
-input[type=password]{height: 35px; 
-    width: 200px;
-    font-size: 18px;}
+h1{
+	margin: auto;
+	text-align: center;
+	overflow: auto;
 
-input[type=checkbox]{align-content: center;}
+}
 
-input[type=checkbox]:hover{cursor: pointer;}
+#login{
+    margin-top: 10px;
+    width: 140px;
+    font-size: 16px;
+}
 
-.row #rightcol{float: right;}
+#thumb{
+	float: left;
+	width: 100%;
+	height: auto;
+
+}
+
+.textInfo{
+	display:inline-block; 
+	width:150px; 
+	text-align: left;
+}
+
+input[type="checkbox"]{
+    vertical-align: middle;
+}
