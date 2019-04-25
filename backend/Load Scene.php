@@ -33,11 +33,6 @@ $stmt = $conn->prepare($sql);
 $stmt->execute();
 $imgDir = $stmt->get_result();
 
-$sql = "SELECT `description` FROM scene WHERE sceneID LIKE '$scene'";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$title = $stmt->get_result();
-
 //$text = $oText['oText'];
 //echo $text;
 $all = "";
@@ -46,16 +41,14 @@ $all = "";
 
 while($text = mysqli_fetch_assoc($oText)){
    $all = $all ."+" .$text['oText'];
-}
-while ($text = mysqli_fetch_array($title)){
-	$all = $all ."+" .":".$text[0];
+   //do shit with it here
 }
 while($text = mysqli_fetch_assoc($imgDir)){
    $all = $all ."+" .$text['imgDir'];
    //do shit with it here
 }
 //$outp = $all. "+".$imgDir;
-//echo $all;
+
 echo json_encode($all); 
 
 

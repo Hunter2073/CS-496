@@ -12,36 +12,51 @@ class BackendAPI{
     $this->databaseapi = new DatabaseAPI($input);
   }
 
+/* login(string, string)
+parameters: valid username, valid password
+returns:
+ - Error if invalid Input
+ - Error if getUserPassword() returns one
+ - true/false bool if password is correct/incorrect
+*/
   public function login($uName, $pWord){
+    $result = new Result();
     if ($uName == null || $pWord == null){
-      $error = new ErrorThrow("Error: Invalid Input");
-      return $error;
+      $result->setError("Error: Invalid Input");
     }
     else { //Valid information from caller
       // Query to retrieve user information
       $dbPW = $this->databaseapi->getUserPassword($uName);
 
-      // Check for errors HERE
-      if (is_string($dbPW)){
-        if (password_verify($pWord, $dbPW)){
-          return true;
-        }
-        else {
-          // Error return: incorrect password
-          $error = new ErrorThrow("Error: Incorrect Password");
-          return $error;
-        }
-      }
-      if (strcmp(get_class($dbPW), "ErrorThrow")==0){
+      if ($dbPW->isError()){
         return $dbPW;
       }
+      else{
+        if (is_bool($dbPW->getResult())){
+          $result->setResult(false);
+        }
+        else {
+          $result->setResult(password_verify($pWord, $dbPW->getResult()));
+        }
+      }
     }
+    return $result;
   }
 
+/* newAccount(string, string)
+parameters: valid username, valid password
+returns:
+ - Error if invalid input
+ - Error if checkUsername returns one
+ - Error if username already exists
+ - True bool if account creation succeeds
+ - Error if createUser returns one
+*/
   public function newAccount($uName, $pWord){
-
+    $result = new Result();
     if ($uName == null || $pWord == null){
-      return new ErrorThrow("Error: Invalid Input");
+      $result->setError("Error: Invalid Input");
+      return $result;
     }
     else { //Valid information from caller
 
@@ -51,17 +66,20 @@ class BackendAPI{
       $exists = $this->databaseapi->checkUsername($uName);
 
       // If the user exists, only ONE row should be returned, else user does not exist.
-      if($exists){
-        // User already exists
-        // Failure message is sent back w/ appropriate info
-        return new ErrorThrow("Error: User already exists");
+      if ($exists->isError()){
+        return $exists;
+      }
+      else if($exists->getResult()==true){
+        $result->setError("BackendAPI Error: User already exists");
+        return $result;
       }
       else{
         // User does not already exist. Therefore can be created.
         $insert = $this->databaseapi->createUser($uName, $pWord);
 
-        if (is_bool($insert)){
-          return true;
+        if (!$insert->isError()){
+          $result->setResult(true);
+          return $result;
         }
         else {
           return $insert;

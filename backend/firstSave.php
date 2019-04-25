@@ -150,7 +150,7 @@ $SQL="";
 	default:
 		echo "Nothing was passed over";
 }//end of switch case */
-$proj=str_replace('"','',$inputArray[0]);
+$proj=$inputArray[0];
 $name=$inputArray[1];
 $opt1=$inputArray[2];
 $opt2=$inputArray[3];
@@ -162,7 +162,7 @@ $imagePath = str_replace('")','',$imagePath);
 $SQL = "INSERT INTO `scene` (`projectID`, `description`, `SceneTitle`,`imgDir`) VALUES ('$proj','$desc','$name','$imagePath')";
 $stmt = $conn->prepare($SQL);
 $stmt->execute();
-echo $proj;
+
 
 $SQL="SELECT * FROM scene ORDER BY sceneID DESC LIMIT 1";
 $stmt = $conn->prepare($SQL);
@@ -185,7 +185,7 @@ $stmt->execute();
 $SQL = "INSERT INTO `options` (`sceneID`,`oText`)VALUES('$all','$opt4')";
 $stmt = $conn->prepare($SQL);
 $stmt->execute();
-//echo $all;
+echo $all;
 //$outp = $result->fetch_all(MYSQLI_ASSOC);
 //echo json_encode($outp);
 ?>

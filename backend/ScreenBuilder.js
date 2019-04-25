@@ -666,7 +666,6 @@ function firstSave(){
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			currentScene =this.responseText;
-			//alert(this.responseText);
 		}
 	};
 	xmlhttp.open("POST", "firstSave.php", true);

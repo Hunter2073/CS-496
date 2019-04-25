@@ -22,7 +22,7 @@ $objNew = str_replace("}", "",$objNew);
 echo $objNew;
 $target = $objNew;
 //$obj.split
-$stmt = $conn->prepare("SELECT firstSceneID FROM project WHERE projectID LIKE '$target'");
+$stmt = $conn->prepare("SELECT firstSceneID FROM project WHERE projectID LIKE '.$target'");
 //$stmt->bind_param("s", $target);
 $stmt->execute();
 $result = $stmt->get_result();
