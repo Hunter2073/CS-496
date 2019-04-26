@@ -71,6 +71,9 @@ if (!$result->isError() && $result->getResult() == true){
 // UT3.1
 
 // UT3.2
+
+//Testing Scene Deletion
+
 resetTestUser();
 ?>
 

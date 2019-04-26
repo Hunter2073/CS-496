@@ -1,6 +1,8 @@
 <?php
-// Begin Session
 session_start();
+setcookie("username", "", 0, "/");
+setcookie("loggedin", false, 0, "/");
+
 // Include Database Objects
 include 'backendapi/backendapi.php';
 
@@ -15,12 +17,13 @@ $bool = $api->login($uName, $pWord);
 if (!$bool->isError()){
   if ($bool->getResult()==true){
     //successfull login
-    $_SESSION['loggedin'] = true;
-    $_SESSION['username'] = $bool['uName'];
+    setcookie("username", $uName, 0, "/");
+    setcookie("loggedin", true, 0, "/");
+    
     // redirect to correct page
     echo '<script type="text/javascript">';
     echo "alert(\"Successful Login\");";
-    echo 'window.location.href = "../frontend/login.html";';
+    echo 'window.location.href = "../frontend/createOrPlay.php";';
     echo '</script>';
   }
   else{
@@ -37,4 +40,5 @@ else {
   echo 'window.location.href = "../frontend/login.html";';
   echo '</script>';
 }
+
 ?>
