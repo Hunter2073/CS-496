@@ -1,3 +1,6 @@
+/*
+eat my ass
+*/
 var isSaved=true;
 var currentProj =1;
 var currentScene;
