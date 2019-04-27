@@ -1,7 +1,7 @@
 <html>
-<link rel="stylesheet" href="../css/sceneBuilder.css">
-<script src="../backend/ScreenBuilder.js"></script>
-	<body id="chunk">
+<link rel="stylesheet" href="../css/SceneBuilder.css">
+<script src="ScreenBuilder.js"></script>
+	<body id="chunk"> 
 		<div class="dropdown" id="dpDIV">
 			<button class="dropbtn">Scene Options</button>
 			<div class="dropdown-content">

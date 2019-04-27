@@ -1,20 +1,4 @@
-<?php
-if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin']==true && isset($_COOKIE['username']) ){
-
-}
-else {
-  echo '<script type="text/javascript">';
-  echo "alert(\"An error occured! You have to be logged in to access this page!\");";
-  echo 'window.location.href = "../frontend/login.html";';
-  echo '</script>';
-}
-?>
 <html>
-<script>
-function createNew(){
-window.location.href = "../frontend/createNewProject.php";
-}
-</script>
 <link rel="stylesheet" href="../css/mycss.css">
 <h1>Select a game to work on:</h1>
 
@@ -28,7 +12,7 @@ window.location.href = "../frontend/createNewProject.php";
 				include dirname(__DIR__, 1).'/backend/backendapi/backendapi.php';
 
 				$backendapi = new BackendAPI(0);
-				$allProjects = $backendapi->databaseapi->getAllProjects($_COOKIE['username']);
+				$allProjects = $backendapi->databaseapi->getAllPublishedProjects();
 
 				if (!$allProjects->isError()){
 					while($row = mysqli_fetch_assoc($allProjects->getResult())){
@@ -38,7 +22,6 @@ window.location.href = "../frontend/createNewProject.php";
 				?>
 				<input type="submit">
 			</form>
-			<input type="button" value="Create New" id="createButton" onclick="createNew()">
 		</div>
 		<div id=rightcol class="col">
 			<img src="../images/bookLogo.jpg" alt="Book Logo" id="thumb">

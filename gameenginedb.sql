@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 26, 2019 at 06:09 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Host: 127.0.0.1
+-- Generation Time: Apr 09, 2019 at 11:58 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `options` (
   `optionID` int(11) NOT NULL,
   `sceneID` int(11) NOT NULL,
-  `nextSceneID` int(11) DEFAULT NULL,
+  `nextSceneID` int(11) NOT NULL,
   `oText` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -44,19 +44,10 @@ CREATE TABLE `options` (
 CREATE TABLE `project` (
   `projectID` int(11) NOT NULL,
   `projectName` varchar(16) NOT NULL,
-  `projectDes` varchar(255) DEFAULT NULL,
   `ownerID` int(11) NOT NULL,
-  `firstSceneID` int(11) DEFAULT NULL,
+  `firstSceneID` int(11) NOT NULL,
   `isPublished` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `project`
---
-
-INSERT INTO `project` (`projectID`, `projectName`, `projectDes`, `ownerID`, `firstSceneID`, `isPublished`) VALUES
-(3, 'adminNamepr', NULL, 10, NULL, 1),
-(4, 'adminNamepr', NULL, 10, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -95,14 +86,6 @@ CREATE TABLE `user` (
   `pWord` varchar(255) NOT NULL,
   `uID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`uName`, `pWord`, `uID`) VALUES
-('admin', '$2y$10$yvensmpcuVuOQoxK4rMM0.2q0J6Jic3pV3ZIXe8sKFilcmrLfqFfq', 9),
-('admin2', '$2y$10$A/bX/ViWjt7mHJqn46S3eOQN4bdQOAZD6cf9OwsiMyeKAc.3UwCwW', 10);
 
 --
 -- Indexes for dumped tables
@@ -161,7 +144,7 @@ ALTER TABLE `options`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `projectID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `projectID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `saves`
@@ -179,7 +162,7 @@ ALTER TABLE `scene`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `uID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `uID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -189,13 +172,15 @@ ALTER TABLE `user`
 -- Constraints for table `options`
 --
 ALTER TABLE `options`
-  ADD CONSTRAINT `options_ibfk_1` FOREIGN KEY (`sceneID`) REFERENCES `scene` (`sceneID`);
+  ADD CONSTRAINT `options_ibfk_1` FOREIGN KEY (`sceneID`) REFERENCES `scene` (`sceneID`),
+  ADD CONSTRAINT `options_ibfk_2` FOREIGN KEY (`nextSceneID`) REFERENCES `scene` (`sceneID`);
 
 --
 -- Constraints for table `project`
 --
 ALTER TABLE `project`
-  ADD CONSTRAINT `project_ibfk_1` FOREIGN KEY (`ownerID`) REFERENCES `user` (`uID`);
+  ADD CONSTRAINT `project_ibfk_1` FOREIGN KEY (`ownerID`) REFERENCES `user` (`uID`),
+  ADD CONSTRAINT `project_ibfk_2` FOREIGN KEY (`firstSceneID`) REFERENCES `scene` (`sceneID`);
 
 --
 -- Constraints for table `saves`

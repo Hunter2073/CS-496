@@ -87,28 +87,6 @@ returns:
       }
     }
   }
-
-  public function newProject($uName, $pName, $pMsg){
-    $result = new Result();
-    // Use $uName to get uID
-    $uID = $this->databaseapi->getUserID_Username($uName);
-
-    if (!$uID->isError()){
-      // Use uID to create new Project
-      $res = $this->databaseapi->createProject($pName, $uID->getResult());
-      if (!$res->isError()){
-        $result->setResult(true);
-        return $result;
-      }
-      else{
-        return $res;
-      }
-    }
-    else {
-      return $uID;
-    }
-  }
-
 }
 
 ?>

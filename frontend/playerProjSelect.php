@@ -10,7 +10,7 @@
 <body>
 	<div id="body" class="row">
 		<div id=leftcol class="col">
-			<form action="playgame.php" method="post">
+			<form action="../backend/playgame.php" method="post">
 				<?php
 				include dirname(__DIR__, 1).'/backend/backendapi/backendapi.php';
 
@@ -23,6 +23,7 @@
 					}
 				}
 				?>
+                <br><br>
 				<input type="submit">
 			</form>
 		</div>
