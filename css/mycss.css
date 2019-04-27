@@ -27,8 +27,6 @@ body{
 }
 
 button{
-	height:55%;
-	width:60%;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -98,10 +96,34 @@ input[type="checkbox"]{
     vertical-align: middle;
 }
 
-input[type="checkbox"]:hover{
+input[type="checkbox"]:hover, input[type="radio"]:hover, input[type="submit"]{
     cursor: pointer;
 }
 
 input[type="text"]:hover, input[type="password"]:hover, button:hover{
     background-color: gainsboro;
+}
+
+.play#image{
+    background-repeat: no-repeat;
+    height: 73%;
+    background-size: contain;
+}
+
+.play button{
+    height: 10%;
+    width: 100%;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.play#options{
+    width: 100%;
+    display: inline-block;
+}
+
+.play#text{
+    background-color: white;
+    font-size: 15px;
+    border-radius: 5px;
 }
